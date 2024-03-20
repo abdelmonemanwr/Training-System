@@ -1,0 +1,48 @@
+add		register service
+get		resolve  service
+kill (remove)	dispose service
+
+``` note
+اي حاجة قبل 
+var app = builder.Build();
+بتكون خاصة بال services 
+وأي حاجة بعده بتكون خاصة بال 
+middlewares
+```
+
+IOC: service provider
+IOC: builder.Servives
+
+``` services types
+	1- framework services : exist in framwork + registered
+		موجودين ومتفعلين لو احتجتهم هناديهم علي طول
+
+	2- built in services: exist in framework + not registered
+	    examples: [AddSession, AddControllersWithViews, ...]
+	    موجودين بس مش متفعلين ،، انا اللي بفعلهم وقت ما بحتاجهم
+
+	3- custom services: not in framework + not registered
+	    انا اللي بعملهم لانهم مش موجودين فالفريمورك وانا اللي بفعلهم كمان 
+	    how to do it?  بيتقال عليه بردو register service
+	        >   builder.Services.AddScoped<interface, class>();
+		// لازم الكلاس يكون بيإمبليمنت الانترفيس
+	        >> builder.Services.AddScoped<IEmpRepo, EmpRepo>();
+		// open for extend closed for modification
+
+ايرور مشهور
+unable to resolve means you forgot to register your service
+ازاي احل الايرور دا ؟
+هتأكد من حاجتين 
+(way 1) 
+  > go to controller 
+  > make sure you send in constructor interface not class
+	this => ctor(IEmpRepo)  not this => ctor(EmpRepo)
+(way 2)
+  > go to program.cs
+  > this line: builder.Services.AddScoped<x,y>();
+  > make sure that x is type of interface not class and y is a class that implements that interface
+
+
+/// important note
+paramaterized constructor in program.cs carry db context options
+and options sent to repo constructor for injecting the db context and not creating object from beginning, options carry connection string to ask connection to the database 

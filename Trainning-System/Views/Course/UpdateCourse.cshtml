@@ -1,0 +1,110 @@
+@model Trainning_System.ViewModel.updateCourseVM
+
+@{
+    Layout = "_myLayout";
+
+    SelectList ourDepartments = new SelectList(Model.departments, "did", "Name");
+}
+
+<div class="header">
+    <h1>Updating Course</h1>
+    <div class="homeBtn">
+        <a asp-action="Index" asp-controller="Course">Back To Courses</a>
+    </div>
+</div>
+
+<form method="Post" class="course-form">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Degree"></label>
+        <input asp-for="Degree" step="5" class="form form-control" />
+        <span asp-validation-for="Degree" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Min_Degree"></label>
+        <input asp-for="Min_Degree" step="5" class="form form-control" />
+        <span asp-validation-for="Min_Degree" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="did"></label>
+        <select class="form form-control" asp-for="did" asp-items="ourDepartments">
+            <option value="0">Choose Department</option>
+        </select>
+        <span asp-validation-for="did" class="text-danger"></span>
+    </div>
+    
+    <div>
+        <input hidden class="form form-control" asp-for="Id" />
+    </div>
+    
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-success save-btn" />
+    </div>
+</form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<style>
+    .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .homeBtn {
+        display: flex;
+        align-items: center;
+    }
+
+    .homeBtn a {
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 15px;
+        border-radius: 25px;
+        background-color: #007bff;
+        border: 2px solid transparent;
+        font-size: 20px;
+        line-height: 1.5;
+        transition: color 0.3s ease-in-out,
+            background-color 0.3s ease-in-out,
+            border-color 0.3s ease-in-out,
+            box-shadow 0.3s ease-in-out;
+    }
+
+    .homeBtn a:hover {
+        border-color: #0056b3;
+        background-color: green;
+    }
+
+    .course-form {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        margin-bottom: 8px;
+    }
+
+    .save-btn {
+        display: block;
+        margin: 0 auto;
+        border-radius: 20px;
+        font-weight: 600;
+        width: 100px;
+    }
+</style>

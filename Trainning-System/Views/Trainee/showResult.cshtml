@@ -1,0 +1,33 @@
+﻿@model Trainning_System.ViewModel.TraineeName_CourseName_CourseResult_Data_ViewModel;
+<style>
+	body {
+		background-color:  @ViewBag.theme;
+	}
+</style>
+
+@if (Model.color == "green")
+{
+
+		<div class="alert alert-success" role="alert">
+				<h4 class="alert-heading">Well done! @Model.traineeName</h4>
+					<p>Aww yeah, you successfully passed the <u><b>@Model.courseName</b></u> exam.</p>
+					<p>Your Grade is @Model.courseDegree</p>
+			
+				<div class="alert alert-success" role="alert">
+					For any clarifications please contact your 
+					<a href="#" class="alert-link">Supervisor</a>
+			</div>
+	</div>
+} 
+else
+{
+	<div class="alert alert-danger" role="alert">
+		<h4 class="alert-heading">Sorry! @Model.traineeName</h4>
+		<p>Oops, it looks like you didn't pass the <u><b>@Model.courseName</b></u> exam.</p>
+		<p>Your Grade is @Model.courseDegree</p>
+		<div class="alert alert-danger" role="alert">
+			For any clarifications please contact your 
+			<a href="#" class="alert-link">Supervisor</a>
+		</div>
+	</div>
+} 

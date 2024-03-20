@@ -1,0 +1,17 @@
+﻿@model List<Trainning_System.ViewModel.ShowTraineeResults>
+
+    <h1>Trainee: @ViewBag.traineeName</h1>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Course</th>
+        <th>Degree</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+             <tr>
+                 <td style="color:@item.color">@item.course</td>
+                 <td style="color:@item.color">@item.degree</td>
+             </tr>   
+    }
+</table>
